@@ -29,6 +29,14 @@ What they do not show:
 - Each row is a single seeded run. In my earlier unseeded runs of the same model, test accuracy moved by about 0.04 from run to run, so the 0.03 difference in test accuracy here is within that noise. I only claim the change in overfitting behavior, not a better final test accuracy.
 - Training accuracy with dropout is measured while dropout is on, which makes it look lower than it would on the same images with dropout off.
 
+## Sample predictions
+
+The dropout model's predictions on 10 fixed test images (every 1000th image), predicted class vs true class:
+
+![Predictions from the dropout model](results/dropout_predictions.png)
+
+It gets 9 of 10 right here; the miss is a bird predicted as a truck. Ten images is a tiny sample, so read this as an illustration. The test accuracy over all 10,000 images is 0.772.
+
 Plots and raw numbers are in `results/`:
 
 | | Loss | Accuracy |

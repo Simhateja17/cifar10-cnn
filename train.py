@@ -19,6 +19,9 @@ from keras.models import Sequential
 
 SEED = 42
 RESULTS_DIR = "results"
+CLASS_NAMES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+# Fixed test images (one per 1000, so each run shows the same pictures).
+PICKS = [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]
 
 
 def load_cifar10():
@@ -111,6 +114,21 @@ def main():
     plt.title(f"Accuracy ({name})")
     plt.legend()
     plt.savefig(os.path.join(RESULTS_DIR, f"{name}_accuracy.png"), dpi=120)
+
+    # Predict a few fixed test images and show predicted vs true class.
+    probabilities = model.predict(test_images[PICKS])
+    plt.figure(figsize=(12, 5.5))
+    correct = 0
+    for i, index in enumerate(PICKS):
+        predicted = CLASS_NAMES[int(np.argmax(probabilities[i]))]
+        true = CLASS_NAMES[int(test_labels[index][0])]
+        correct += predicted == true
+        plt.subplot(2, 5, i + 1)
+        plt.imshow(test_images[index])
+        plt.title(f"pred: {predicted}\ntrue: {true}", fontsize=9, color="green" if predicted == true else "red")
+        plt.axis("off")
+    plt.suptitle(f"Predictions ({name}): {correct} of {len(PICKS)} correct")
+    plt.savefig(os.path.join(RESULTS_DIR, f"{name}_predictions.png"), dpi=120)
 
     summary = {
         "run": name,
