@@ -1,0 +1,12 @@
+{
+  "run": "no_dropout",
+  "parameters": 276138,
+  "epochs": 20,
+  "final_train_accuracy": 0.9241999983787537,
+  "final_val_accuracy": 0.7268000245094299,
+  "test_accuracy": 0.739799976348877,
+  "final_train_loss": 0.21874937415122986,
+  "final_val_loss": 1.4848774671554565,
+  "best_val_loss": 0.8549200892448425,
+  "best_val_loss_epoch": 3
+}
