@@ -54,6 +54,16 @@ python train.py                # with dropout
 python train.py --no-dropout   # same model, no dropout layers
 ```
 
+Each run also saves its trained model to `results/<run>_model.keras` (weights only, 3.4 MB). Load it and predict without retraining:
+
+```python
+from keras.models import load_model
+model = load_model("results/dropout_model.keras")
+probabilities = model.predict(images)  # images: shape (n, 32, 32, 3), pixels scaled to 0 to 1
+```
+
+Reloading the dropout model and evaluating it on the 10,000 test images gives the same 0.772 as the training run.
+
 The CIFAR-10 download goes through `keras.datasets`. If that is slow, set `CIFAR10_NPZ` to a local `.npz` with the keys `train_images`, `train_labels`, `test_images`, `test_labels`.
 
 Tested with TensorFlow 2.20 and Keras 3.10.
