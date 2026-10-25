@@ -97,8 +97,8 @@ def main():
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    # Weights only (no optimizer state) keeps the file small; enough to predict with.
-    model.save(os.path.join(RESULTS_DIR, f"{name}_model.keras"), include_optimizer=False)
+    # Keeps the architecture, weights and optimizer state, so the model can predict or resume training.
+    model.save(os.path.join(RESULTS_DIR, f"{name}_model.keras"))
 
     plt.figure()
     plt.plot(history.history["loss"], label="train loss")

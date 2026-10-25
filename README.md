@@ -54,7 +54,7 @@ python train.py                # with dropout
 python train.py --no-dropout   # same model, no dropout layers
 ```
 
-Each run also saves its trained model to `results/<run>_model.keras` (weights only, 3.4 MB). Load it and predict without retraining:
+Each run also saves its trained model to `results/<run>_model.keras` (architecture, weights and optimizer state, 3.4 MB). Load it and predict without retraining:
 
 ```python
 from keras.models import load_model
